@@ -6,10 +6,14 @@
 
 #ifndef RECT_H
 #define RECT_H
+#include <QWidget>
+#include <QGridLayout>
 #include <QPushButton>
 #include <QLineEdit>
 #include <QComboBox>
 #include <QString>
+#include "../AbstractShape/bbox.h"
+#include "../AbstractShape/point.h"
 #include "../AbstractShape/abstractshape.h"
 
 class Rect : public AbstractShape
@@ -29,15 +33,15 @@ public:
     BBox *getBBox() const;
     QString getType() const;
     int getAnchor() const;
-    bool move(double &x, double &y);
-    bool translate(double &x, double &y);
-    bool changeAnchor(int &ref);
-    bool shrink(double &left, double &top, double &right, double &bottom);
-    bool expand(double &left, double &top, double &right, double &bottom);
+    bool move(double x, double y);
+    bool translate(double x, double y);
+    bool changeAnchor(int ref);
+    bool shrink(double left, double top, double right, double bottom);
+    bool expand(double left, double top, double right, double bottom);
     bool copy(AbstractShape *shape);
     bool compare(AbstractShape *shape);
 
-    static const QString typeName;
+    static QString typeName;
 
     // Special Method/Member
     double getWidth() const;
@@ -51,8 +55,8 @@ public:
     QList<Point*>* getPoints() const;
 
     // Special Parameters
-    static QWidget* settingPad;
-    static QGridLayout* layout;
+    static QWidget *settingPad;
+    static QGridLayout *layout;
 
 private:
 

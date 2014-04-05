@@ -18,10 +18,7 @@ SOURCES += main.cpp\
     layer.cpp \
     layertablemodel.cpp \
     layermanger.cpp \
-    cell.cpp \
-    point.cpp \
     cellmodel.cpp \
-    pointmodel.cpp \
     cellwindow.cpp \
     bbox.cpp
 
@@ -30,12 +27,8 @@ HEADERS  += mainwindow.h \
     layer.h \
     layertablemodel.h \
     layermanger.h \
-    cell.h \
-    point.h \
-    cellmodel.h \
-    pointmodel.h \
     cellwindow.h \
-    bbox.h
+    cellmodel.h
 
 CONFIG += c++11 \
            plugin

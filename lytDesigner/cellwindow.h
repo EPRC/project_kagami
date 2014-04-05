@@ -8,7 +8,6 @@
 #include <QComboBox>
 #include <QGridLayout>
 #include <QPushButton>
-#include "pointmodel.h"
 #include "layertablemodel.h"
 
 class CellWindow : public QDialog
@@ -32,7 +31,6 @@ public:
 
     QGridLayout *layout;
 
-    bool setPointModel(PointModel *pm);
     bool setLayerModel(LayerTableModel *lm);
     int checkMode();
     void reset(const int &m);
@@ -41,7 +39,6 @@ public:
     static const int SET_MODE = 1;
 
 private:
-    PointModel *pointModel;
     LayerTableModel *layerModel;
     int mode = CellWindow::ADD_MODE;
 

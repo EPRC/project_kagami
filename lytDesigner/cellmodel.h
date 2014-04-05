@@ -8,7 +8,6 @@
 #include <QDebug>
 
 Q_DECLARE_METATYPE(Layer*)
-Q_DECLARE_METATYPE(QList<Point*>*)
 
 class CellModel : public QAbstractItemModel
 {

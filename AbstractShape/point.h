@@ -1,7 +1,9 @@
 #ifndef POINT_H
 #define POINT_H
 
-class Point
+#include "abstractshape_global.h"
+
+class ABSTRACTSHAPESHARED_EXPORT Point
 {
 public:
     Point();

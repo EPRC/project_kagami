@@ -11,10 +11,14 @@ TEMPLATE = lib
 
 DEFINES += ABSTRACTSHAPE_LIBRARY
 
-SOURCES += abstractshape.cpp
+SOURCES += abstractshape.cpp \
+    bbox.cpp \
+    point.cpp
 
 HEADERS += abstractshape.h\
-        abstractshape_global.h
+        abstractshape_global.h \
+    bbox.h \
+    point.h
 
 unix {
     target.path = /usr/lib

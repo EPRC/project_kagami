@@ -3,8 +3,8 @@
 
 #include <QWidget>
 #include <QGridLayout>
-#include "../lytDesigner/point.h"
-#include "../lytDesigner/bbox.h"
+#include "bbox.h"
+#include "point.h"
 #include "../lytDesigner/layer.h"
 #include "abstractshape_global.h"
 
@@ -37,11 +37,11 @@ public:
     virtual BBox* getBBox() const = 0;
     virtual QString getType() const = 0;
     virtual int  getAnchor() const = 0;
-    virtual bool move(double &x, double &y) = 0;
-    virtual bool translate(double &x, double &y) = 0;
-    virtual bool changeAnchor(int &ref) = 0;
-    virtual bool shrink(double &left, double &top, double &right, double &bottom) = 0;
-    virtual bool expand(double &left, double &top, double &right, double &bottom) = 0;
+    virtual bool move(double x, double y) = 0;
+    virtual bool translate(double x, double y) = 0;
+    virtual bool changeAnchor(int ref) = 0;
+    virtual bool shrink(double left, double top, double right, double bottom) = 0;
+    virtual bool expand(double left, double top, double right, double bottom) = 0;
     virtual bool copy(AbstractShape *shape) = 0;
     virtual bool compare(AbstractShape *shape) = 0;
 

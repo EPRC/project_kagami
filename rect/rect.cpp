@@ -8,7 +8,6 @@ Rect::Rect() : AbstractShape()
     shiftX = 0;
     shiftY = 0;
 
-    typeName = "Rect";
     widthPar = "";
     heightPar = "";
     shiftXPar = "";
@@ -42,6 +41,16 @@ AbstractShape *Rect::createShape()
     return new Rect();
 }
 
+QWidget *Rect::getSettingPad()
+{
+    return settingPad;
+}
+
+QGridLayout *Rect::getLayout()
+{
+    return layout;
+}
+
 BBox *Rect::getBBox() const
 {
     BBox *bBox = new BBox();
@@ -49,6 +58,7 @@ BBox *Rect::getBBox() const
     bBox->top = points->at(1)->y;
     bBox->right = points->at(2)->x;
     bBox->bottom = points->at(3)->y;
+    return bBox;
 }
 
 QString Rect::getType() const
@@ -61,7 +71,7 @@ int Rect::getAnchor() const
     return anchor;
 }
 
-bool Rect::move(double &x, double &y)
+bool Rect::move(double x, double y)
 {
     shiftX += x;
     shiftY += y;
@@ -76,7 +86,7 @@ bool Rect::move(double &x, double &y)
     return false;
 }
 
-bool Rect::translate(double &x, double &y)
+bool Rect::translate(double x, double y)
 {
     move(x,y);
 
@@ -88,13 +98,13 @@ bool Rect::translate(double &x, double &y)
     return true;
 }
 
-bool Rect::changeAnchor(int &ref)
+bool Rect::changeAnchor(int ref)
 {
     anchor = ref;
     return true;
 }
 
-bool Rect::shrink(double &left, double &top, double &right, double &bottom)
+bool Rect::shrink(double left, double top, double right, double bottom)
 {
     if ((width-left-right)<=0 || (height-top-bottom) >=0)
         return false;
@@ -115,7 +125,7 @@ bool Rect::shrink(double &left, double &top, double &right, double &bottom)
     return false;
 }
 
-bool Rect::expand(double &left, double &top, double &right, double &bottom)
+bool Rect::expand(double left, double top, double right, double bottom)
 {
     return shrink(-left,-top,-right,-bottom);
 }
@@ -197,5 +207,5 @@ QList<Point *> *Rect::getPoints() const
 }
 
 QString Rect::typeName = "Rect";
-QWidget *settingPad = new QWidget();
-QGridLayout *layout = new QGridLayout();
+QWidget* Rect::settingPad = new QWidget();
+QGridLayout* Rect::layout = new QGridLayout();

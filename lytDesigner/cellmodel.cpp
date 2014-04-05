@@ -123,7 +123,7 @@ bool CellModel::setData(const QModelIndex &index, const QVariant &value, int rol
         case DESCRIPTION:
             return true;
         case POINT:
-            return getCellByIndex(index)->setPointSet(value.value<QList<Point*>*>());
+            //return getCellByIndex(index)->setPointSet(value.value<QList<Point*>*>());
     }
     return false;
 }

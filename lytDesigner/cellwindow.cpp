@@ -12,16 +12,6 @@ CellWindow::~CellWindow()
 
 }
 
-bool CellWindow::setPointModel(PointModel *pm)
-{
-    if (pm){
-        pointModel = pm;
-        pointView->setModel(pointModel);
-        return true;
-    }
-    return false;
-}
-
 bool CellWindow::setLayerModel(LayerTableModel *lm)
 {
     if (lm){
@@ -42,7 +32,6 @@ void CellWindow::reset(const int &m)
 {
     mode = m;
     cellName->setText("");
-    pointModel->setPointList(nullptr);
     if (mode == CellWindow::ADD_MODE){
         addConfirm->setEnabled(true);
         setConfirm->setEnabled(false);
@@ -65,8 +54,6 @@ void CellWindow::initObj()
     addConfirm = new QPushButton("&Add",this);
     setConfirm = new QPushButton("&Set",this);
     cancel = new QPushButton("&Cancel",this);
-
-    pointModel = new PointModel(this);
 
     layout = new QGridLayout(this);
     layout->addWidget(layerLabel,0,0,1,1);

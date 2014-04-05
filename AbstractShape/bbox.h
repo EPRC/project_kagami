@@ -1,7 +1,9 @@
 #ifndef BBOX_H
 #define BBOX_H
 
-class BBox
+#include "abstractshape_global.h"
+
+class ABSTRACTSHAPESHARED_EXPORT BBox
 {
 public:
     BBox();
