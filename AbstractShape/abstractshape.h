@@ -74,7 +74,9 @@ public:
     bool insertChildren(const int &position, const int &count, AbstractShape *child = nullptr);
     bool removeChildren(const int &position, const int &count, const bool &destroy);
 
-
+public slots:
+    virtual void onCreate() = 0;
+    virtual void onSet() = 0;
 
 protected:
     QString name;

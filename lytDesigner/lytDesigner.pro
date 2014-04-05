@@ -19,8 +19,7 @@ SOURCES += main.cpp\
     layertablemodel.cpp \
     layermanger.cpp \
     cellmodel.cpp \
-    cellwindow.cpp \
-    bbox.cpp
+    cellwindow.cpp
 
 HEADERS  += mainwindow.h \
     layerwindow.h \

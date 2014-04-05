@@ -209,3 +209,17 @@ QList<Point *> *Rect::getPoints() const
 QString Rect::typeName = "Rect";
 QWidget* Rect::settingPad = new QWidget();
 QGridLayout* Rect::layout = new QGridLayout();
+
+QLabel* Rect::widthLabel = new QLabel("Width:",Rect::layout);
+QLabel* Rect::heightLabel = new QLabel("Height:",Rect::layout);
+QLabel* Rect::paraLabel = new QLabel("Parameterized?",Rect::layout);
+QLabel* Rect::shiftXLabel = new QLabel("X shift:",Rect::layout);
+QLabel* Rect::shiftYLabel = new QLabel("Y shift:",Rect::layout);
+QLineEdit* Rect::widthEdit = new QLineEdit(Rect::layout);
+QLineEdit* Rect::heightEdit = new QLineEdit(Rect::layout);
+QLineEdit* Rect::shiftXEdit = new QLineEdit(Rect::layout);
+QLineEdit* Rect::shiftYEdit = new QLineEdit(Rect::layout);
+QLineEdit* Rect::widthParEdit = new QLineEdit(Rect::layout);
+QLineEdit* Rect::heightParEdit = new QLineEdit(Rect::layout);
+QLineEdit* Rect::shiftXParEdit = new QLineEdit(Rect::layout);
+QLineEdit* Rect::shiftYParEdit = new QLineEdit(Rect::layout);

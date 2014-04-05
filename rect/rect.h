@@ -9,6 +9,7 @@
 #include <QWidget>
 #include <QGridLayout>
 #include <QPushButton>
+#include <QLabel>
 #include <QLineEdit>
 #include <QComboBox>
 #include <QString>
@@ -57,6 +58,19 @@ public:
     // Special Parameters
     static QWidget *settingPad;
     static QGridLayout *layout;
+    static QLabel *widthLabel;
+    static QLabel *heightLabel;
+    static QLabel *paraLabel;
+    static QLabel *shiftXLabel;
+    static QLabel *shiftYLabel;
+    static QLineEdit *widthEdit;
+    static QLineEdit *heightEdit;
+    static QLineEdit *shiftXEdit;
+    static QLineEdit *shiftYEdit;
+    static QLineEdit *widthParEdit;
+    static QLineEdit *heightParEdit;
+    static QLineEdit *shiftXParEdit;
+    static QLineEdit *shiftYParEdit;
 
 private:
 
