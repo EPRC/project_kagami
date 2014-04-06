@@ -3,6 +3,7 @@
 
 AbstractShape::AbstractShape()
 {
+    points = new QList<Point*>();
 }
 
 AbstractShape::~AbstractShape()

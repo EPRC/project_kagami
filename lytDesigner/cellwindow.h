@@ -29,7 +29,7 @@ public:
     QPushButton *cancel;
 
     QGridLayout *layout;
-    QGridLayout *centralLayout;
+    QWidget *centralWidget;
 
     bool setLayerModel(LayerTableModel *lm);
     bool setCurrentCell(Cell* cell);

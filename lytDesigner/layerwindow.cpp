@@ -10,7 +10,7 @@ LayerWindow::LayerWindow(QWidget *parent) :
     manager = new LayerManager(this);
     cellWindow = new CellWindow(this);
 
-    //topCell = new Rect();
+    topCell = new Cell();
 
     setRMMenu();
 
@@ -52,14 +52,13 @@ LayerWindow::LayerWindow(QWidget *parent) :
     layerModel = new LayerTableModel();
     layerModel->setLayerList(&layerList);
     cellModel = new CellModel();
-    //cellModel->setTopCell(topCell);
+    cellModel->setTopCell(topCell);
 
     tableview->setModel(layerModel);
     tableview->setColumnHidden(0,true);
-    //tableview->setRowHidden(0,true);
     listview->setModel(layerModel);
     listview->setModelColumn(2);
-    //treeview->setModel(cellModel);
+    treeview->setModel(cellModel);
 
     layout->addWidget(tableview);
     layout->addWidget(listview);

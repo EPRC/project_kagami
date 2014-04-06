@@ -2,6 +2,14 @@
 
 Cell::Cell()
 {
+    name = "[New Cell]";
+    parentCell = nullptr;
+    childCells = new QList<Cell*>();
+}
+
+QString Cell::getName()
+{
+    return name;
 }
 
 Layer *Cell::getLayer() const
@@ -31,6 +39,15 @@ bool Cell::setName(QString namep)
 {
     name = namep;
     return true;
+}
+
+bool Cell::setLayer(Layer *ly)
+{
+    if (ly){
+        layer = ly;
+        return true;
+    }
+    return false;
 }
 
 int Cell::childCount() const

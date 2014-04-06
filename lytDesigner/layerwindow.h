@@ -31,7 +31,7 @@ public:
     CellWindow *cellWindow;
 
     QList<Layer*> layerList;
-    //Rect *topCell;
+    Cell *topCell;
 
     QTreeView *treeview;
     QListView *listview;

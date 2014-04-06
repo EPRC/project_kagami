@@ -122,9 +122,8 @@ bool CellModel::setData(const QModelIndex &index, const QVariant &value, int rol
             return getCellByIndex(index)->setLayer(value.value<Layer*>());
         case DESCRIPTION:
             return true;
-        case POINT:
+        //case POINT:
             //return getCellByIndex(index)->setPointSet(value.value<QList<Point*>*>());
-        ;
     }
     return false;
 }

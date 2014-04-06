@@ -72,7 +72,77 @@ Cell *Rect::createCell()
 
 bool Rect::applySetting()
 {
-    return true;
+    BBox *pBox;
+    AbstractShape* pc;
+    width = widthEdit->text().toDouble();
+    widthPar = widthEdit->text();
+    height = heightEdit->text().toDouble();
+    heightPar = heightEdit->text();
+    shiftX = shiftXEdit->text().toDouble();
+    shiftXPar = shiftXParEdit->text();
+    shiftY = shiftYEdit->text().toDouble();
+    shiftYPar = shiftYParEdit->text();
+
+    if (parentCell)
+        pc = dynamic_cast<AbstractShape*>(parentCell);
+    else
+        return false;
+
+    if (pc)
+        pBox = pc->getBBox();
+    else
+        pBox = new BBox();
+
+    if(points){
+        switch(anchor){
+        case CENTER:
+            points->at(0)->x = (pBox->left + pBox->right -width) / 2;
+            points->at(0)->y = (pBox->bottom + pBox->top - height) / 2;
+            break;
+        case LEFT|CENTER:
+            points->at(0)->x = pBox->left;
+            points->at(0)->y = (pBox->bottom + pBox->top - height) / 2;
+            break;
+        case LEFT|BOTTOM:
+            points->at(0)->x = pBox->left;
+            points->at(0)->y = pBox->bottom;
+            break;
+        case LEFT|TOP:
+            points->at(0)->x = pBox->left;
+            points->at(0)->y = pBox->top - height;
+            break;
+        case CENTER|TOP:
+            points->at(0)->x = (pBox->left + pBox->right -width) / 2;
+            points->at(0)->y = pBox->top - height;
+            break;
+        case CENTER|BOTTOM:
+            points->at(0)->x = (pBox->left + pBox->right -width) / 2;
+            points->at(0)->y = pBox->bottom;
+            break;
+        case RIGHT|TOP:
+            points->at(0)->x = pBox->right - width;
+            points->at(0)->y = pBox->top - height;
+            break;
+        case RIGHT|CENTER:
+            points->at(0)->x = pBox->right - width;
+            points->at(0)->y = (pBox->bottom + pBox->top - height) / 2;
+            break;
+        case RIGHT|BOTTOM:
+            points->at(0)->x = pBox->right - width;
+            points->at(0)->y = pBox->bottom;
+            break;
+        default:
+            return false;
+        }
+        points->at(1)->x = points->at(0)->x;
+        points->at(1)->y = points->at(0)->y + height;
+        points->at(2)->x = points->at(0)->x + width;
+        points->at(2)->y = points->at(1)->y;
+        points->at(3)->x = points->at(2)->x;
+        points->at(3)->y = points->at(0)->y;
+        return true;
+    }
+    return false;
 }
 
 BBox *Rect::getBBox() const
@@ -116,7 +186,7 @@ bool Rect::translate(double x, double y)
 
     if (childCells){
         foreach(Cell* child, *childCells){
-            static_cast<AbstractShape*>(child)->translate(x,y);
+            dynamic_cast<AbstractShape*>(child)->translate(x,y);
         }
     }
     return true;
@@ -157,7 +227,7 @@ bool Rect::expand(double left, double top, double right, double bottom)
 bool Rect::copy(AbstractShape *shape)
 {
     if (compare(shape)){
-        Rect *src = static_cast<Rect*>(shape);
+        Rect *src = dynamic_cast<Rect*>(shape);
         layer = src->getLayer();
         anchor = src->getAnchor();
         width = src->getWidth();
