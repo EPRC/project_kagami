@@ -4,7 +4,7 @@
 #include <QAbstractItemModel>
 #include <QModelIndex>
 #include <QVariant>
-#include "../AbstractShape/abstractshape.h"
+#include "../AbstractShape/cell.h"
 #include <QDebug>
 
 Q_DECLARE_METATYPE(Layer*)
@@ -16,8 +16,8 @@ public:
     explicit CellModel(QObject *parent = 0);
     ~CellModel();
 
-    AbstractShape* getCellByIndex(const QModelIndex &index) const;
-    bool setTopCell(AbstractShape *top);
+    Cell* getCellByIndex(const QModelIndex &index) const;
+    bool setTopCell(Cell *top);
 
     static const int COL_MAX = 2;
 
@@ -27,7 +27,7 @@ public:
     static const int POINT      =3;
 
 private:
-    AbstractShape *topCell;
+    Cell *topCell;
     QList<QVariant> header;
 
 signals:

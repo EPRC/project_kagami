@@ -13,12 +13,14 @@ DEFINES += ABSTRACTSHAPE_LIBRARY
 
 SOURCES += abstractshape.cpp \
     bbox.cpp \
-    point.cpp
+    point.cpp \
+    cell.cpp
 
 HEADERS += abstractshape.h\
         abstractshape_global.h \
     bbox.h \
-    point.h
+    point.h \
+    cell.h
 
 unix {
     target.path = /usr/lib

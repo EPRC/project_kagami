@@ -31,3 +31,10 @@ HEADERS  += mainwindow.h \
 
 CONFIG += c++11 \
            plugin
+
+win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../AbstractShape/release/ -lAbstractShape
+else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../AbstractShape/debug/ -lAbstractShape
+else:unix: LIBS += -L$$OUT_PWD/../AbstractShape/ -lAbstractShape
+
+INCLUDEPATH += $$PWD/../AbstractShape
+DEPENDPATH += $$PWD/../AbstractShape

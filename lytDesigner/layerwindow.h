@@ -14,7 +14,6 @@
 #include "layermanger.h"
 #include "cellmodel.h"
 #include "cellwindow.h"
-#include "../rect/rect.h"
 
 #include <QDebug>
 
@@ -32,7 +31,7 @@ public:
     CellWindow *cellWindow;
 
     QList<Layer*> layerList;
-    Rect *topCell;
+    //Rect *topCell;
 
     QTreeView *treeview;
     QListView *listview;

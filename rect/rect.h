@@ -24,12 +24,13 @@ public:
     Rect(Rect *src);
     ~Rect();
 
+    // Cell interface
+    QGridLayout *getQGridLayout();
+    Cell *createCell();
+    bool applySetting();
+
     // AbstractShape interface
 public:
-    AbstractShape* createShape();
-
-    QWidget* getSettingPad();
-    QGridLayout* getLayout();
 
     BBox *getBBox() const;
     QString getType() const;
@@ -41,6 +42,7 @@ public:
     bool expand(double left, double top, double right, double bottom);
     bool copy(AbstractShape *shape);
     bool compare(AbstractShape *shape);
+    bool overlap(AbstractShape *shape);
 
     static QString typeName;
 
@@ -55,6 +57,11 @@ public:
     QString getShiftYPar() const;
     QList<Point*>* getPoints() const;
 
+public slots:
+    void onCreate();
+    void onSet();
+
+public:
     // Special Parameters
     static QWidget *settingPad;
     static QGridLayout *layout;
@@ -71,6 +78,7 @@ public:
     static QLineEdit *heightParEdit;
     static QLineEdit *shiftXParEdit;
     static QLineEdit *shiftYParEdit;
+    static bool isSet;
 
 private:
 
@@ -83,6 +91,7 @@ private:
     QString heightPar;
     QString shiftXPar;
     QString shiftYPar;
+
 
 };
 

@@ -5,7 +5,7 @@
 #include <QGridLayout>
 #include "bbox.h"
 #include "point.h"
-#include "../lytDesigner/layer.h"
+#include "cell.h"
 #include "abstractshape_global.h"
 
 #define CENTER  0
@@ -18,20 +18,15 @@
 #define INT     32
 
 
-class ABSTRACTSHAPESHARED_EXPORT AbstractShape
+class ABSTRACTSHAPESHARED_EXPORT AbstractShape : public Cell
 {
 
 public:
     AbstractShape();
     virtual ~AbstractShape();
 
-    // GUI related
-
-    virtual QWidget* getSettingPad() = 0;
-    virtual QGridLayout* getLayout() = 0;
-
     // Factory method
-    virtual AbstractShape* createShape() = 0;
+    //virtual Cell *createCell() = 0;
 
     // Geomotry related
     virtual BBox* getBBox() const = 0;
@@ -44,46 +39,21 @@ public:
     virtual bool expand(double left, double top, double right, double bottom) = 0;
     virtual bool copy(AbstractShape *shape) = 0;
     virtual bool compare(AbstractShape *shape) = 0;
+    virtual bool overlap(AbstractShape *shape) = 0;
 
+    // Shape method
     int anchor;
 
-
-    // Hierarchy related
-    int childCount() const;
-    int pointCount() const ;
-    int getChildNum(AbstractShape *child) const;
-    int getRowNum() const;
-
-    QString getName() const;
-
-    AbstractShape* getParent() const;
-    AbstractShape* getChild(const int &row) const;
-    QList<Point*>* getPoint() const;
-    Layer* getLayer() const;
-
-    bool setLayer(Layer *ly);
-    bool setName(const QString &namep);
-    bool setPoint(int nth, Point *p);
-    bool setPointSet(QList<Point*> *p);
-    bool appendPoint(Point *p);
-
-    bool setParent(AbstractShape *parent);
-    bool removeParent();
-    bool appendChild(AbstractShape *child);
-    bool removeChild(AbstractShape *child);
-    bool insertChildren(const int &position, const int &count, AbstractShape *child = nullptr);
-    bool removeChildren(const int &position, const int &count, const bool &destroy);
+    int pointCount() const;
+    QList<Point *> *getPoint() const;
 
 public slots:
     virtual void onCreate() = 0;
     virtual void onSet() = 0;
 
 protected:
-    QString name;
-    AbstractShape *parentCell;
-    QList<AbstractShape*> *childCells;
-    Layer *layer;
     QList<Point*> *points;
+
 };
 
 #endif // ABSTRACTSHAPE_H

@@ -12,14 +12,14 @@ CellModel::~CellModel()
 
 }
 
-AbstractShape *CellModel::getCellByIndex(const QModelIndex &index) const
+Cell *CellModel::getCellByIndex(const QModelIndex &index) const
 {
     if (!index.isValid())
         return topCell;
-    return static_cast<AbstractShape*>(index.internalPointer());
+    return static_cast<Cell*>(index.internalPointer());
 }
 
-bool CellModel::setTopCell(AbstractShape *top)
+bool CellModel::setTopCell(Cell *top)
 {
     if (top){
         beginResetModel();
@@ -32,7 +32,7 @@ bool CellModel::setTopCell(AbstractShape *top)
 
 QModelIndex CellModel::index(int row, int column, const QModelIndex &parent) const
 {
-    AbstractShape* pCell;
+    Cell* pCell;
     if(!hasIndex(row,column,parent))
         return QModelIndex();
     // TODO try to cancel this part
@@ -41,13 +41,13 @@ QModelIndex CellModel::index(int row, int column, const QModelIndex &parent) con
     else
         pCell = getCellByIndex(parent);
 
-    AbstractShape* cCell = pCell->getChild(row);
+    Cell* cCell = pCell->getChild(row);
     return createIndex(row,column,cCell);
 }
 
 QModelIndex CellModel::parent(const QModelIndex &child) const
 {
-    AbstractShape* pCell;
+    Cell* pCell;
     if (!child.isValid()){
         return QModelIndex();
     }else{
@@ -124,6 +124,7 @@ bool CellModel::setData(const QModelIndex &index, const QVariant &value, int rol
             return true;
         case POINT:
             //return getCellByIndex(index)->setPointSet(value.value<QList<Point*>*>());
+        ;
     }
     return false;
 }
@@ -157,7 +158,7 @@ bool CellModel::dropMimeData(const QMimeData *data, Qt::DropAction action, int r
 
 bool CellModel::insertRows(int row, int count, const QModelIndex &parent)
 {
-    AbstractShape* pCell;
+    Cell* pCell;
     bool result;
 
     if (!parent.isValid())
@@ -177,7 +178,7 @@ bool CellModel::insertRows(int row, int count, const QModelIndex &parent)
 
 bool CellModel::removeRows(int row, int count, const QModelIndex &parent)
 {
-    AbstractShape* pCell;
+    Cell* pCell;
     bool result;
 
     if (!parent.isValid())
@@ -197,8 +198,8 @@ bool CellModel::removeRows(int row, int count, const QModelIndex &parent)
 
 bool CellModel::moveRows(const QModelIndex &sourceParent, int sourceRow, int count, const QModelIndex &destinationParent, int destinationChild)
 {
-    AbstractShape* srcCell;
-    AbstractShape* desCell;
+    Cell* srcCell;
+    Cell* desCell;
     bool result = true;
 
     if (!sourceParent.isValid())

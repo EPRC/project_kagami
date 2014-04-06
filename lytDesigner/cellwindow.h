@@ -9,6 +9,7 @@
 #include <QGridLayout>
 #include <QPushButton>
 #include "layertablemodel.h"
+#include "../AbstractShape/cell.h"
 
 class CellWindow : public QDialog
 {
@@ -19,19 +20,19 @@ public:
 
     QLabel *layerLabel;
     QLabel *cellLabel;
-    QLabel *pointLabel;
 
     QComboBox *layerBox;
     QLineEdit *cellName;
-    QListView *pointView;
 
     QPushButton *addConfirm;
     QPushButton *setConfirm;
     QPushButton *cancel;
 
     QGridLayout *layout;
+    QGridLayout *centralLayout;
 
     bool setLayerModel(LayerTableModel *lm);
+    bool setCurrentCell(Cell* cell);
     int checkMode();
     void reset(const int &m);
 
@@ -41,6 +42,7 @@ public:
 private:
     LayerTableModel *layerModel;
     int mode = CellWindow::ADD_MODE;
+    Cell* currentCell;
 
     void initObj();
 

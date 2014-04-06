@@ -36,19 +36,43 @@ Rect::~Rect()
 
 }
 
-AbstractShape *Rect::createShape()
+QGridLayout *Rect::getQGridLayout()
+{
+    if (!isSet){
+        layout->addWidget(paraLabel,0,2);
+        layout->addWidget(widthLabel,1,0);
+        layout->addWidget(widthEdit,2,0);
+        layout->addWidget(widthParEdit,2,2);
+        layout->addWidget(heightLabel,3,0);
+        layout->addWidget(heightEdit,4,0);
+        layout->addWidget(heightParEdit,4,2);
+        layout->addWidget(shiftXLabel,5,0);
+        layout->addWidget(shiftXEdit,6,0);
+        layout->addWidget(shiftXParEdit,6,2);
+        layout->addWidget(shiftYLabel,7,0);
+        layout->addWidget(shiftYEdit,8,0);
+        layout->addWidget(shiftYParEdit,8,2);
+        isSet = true;
+    }
+    widthEdit->setText(QString::number(getWidth()));
+    widthParEdit->setText(QString(getWidthPar()));
+    heightEdit->setText(QString::number(getWidth()));
+    heightParEdit->setText(QString(getHeightPar()));
+    shiftXEdit->setText(QString::number(getWidth()));
+    shiftXParEdit->setText(QString(getShiftXPar()));
+    shiftYEdit->setText(QString::number(getWidth()));
+    shiftYParEdit->setText(QString(getShiftYPar()));
+    return layout;
+}
+
+Cell *Rect::createCell()
 {
     return new Rect();
 }
 
-QWidget *Rect::getSettingPad()
+bool Rect::applySetting()
 {
-    return settingPad;
-}
-
-QGridLayout *Rect::getLayout()
-{
-    return layout;
+    return true;
 }
 
 BBox *Rect::getBBox() const
@@ -91,8 +115,8 @@ bool Rect::translate(double x, double y)
     move(x,y);
 
     if (childCells){
-        foreach(AbstractShape* child, *childCells){
-            child->translate(x,y);
+        foreach(Cell* child, *childCells){
+            static_cast<AbstractShape*>(child)->translate(x,y);
         }
     }
     return true;
@@ -161,6 +185,12 @@ bool Rect::compare(AbstractShape *shape)
     return false;
 }
 
+bool Rect::overlap(AbstractShape *shape)
+{
+    Q_UNUSED(shape);
+    return false;
+}
+
 double Rect::getWidth() const
 {
     return width;
@@ -206,20 +236,32 @@ QList<Point *> *Rect::getPoints() const
     return points;
 }
 
+void Rect::onCreate()
+{
+
+}
+
+void Rect::onSet()
+{
+
+}
+
 QString Rect::typeName = "Rect";
 QWidget* Rect::settingPad = new QWidget();
 QGridLayout* Rect::layout = new QGridLayout();
 
-QLabel* Rect::widthLabel = new QLabel("Width:",Rect::layout);
-QLabel* Rect::heightLabel = new QLabel("Height:",Rect::layout);
-QLabel* Rect::paraLabel = new QLabel("Parameterized?",Rect::layout);
-QLabel* Rect::shiftXLabel = new QLabel("X shift:",Rect::layout);
-QLabel* Rect::shiftYLabel = new QLabel("Y shift:",Rect::layout);
-QLineEdit* Rect::widthEdit = new QLineEdit(Rect::layout);
-QLineEdit* Rect::heightEdit = new QLineEdit(Rect::layout);
-QLineEdit* Rect::shiftXEdit = new QLineEdit(Rect::layout);
-QLineEdit* Rect::shiftYEdit = new QLineEdit(Rect::layout);
-QLineEdit* Rect::widthParEdit = new QLineEdit(Rect::layout);
-QLineEdit* Rect::heightParEdit = new QLineEdit(Rect::layout);
-QLineEdit* Rect::shiftXParEdit = new QLineEdit(Rect::layout);
-QLineEdit* Rect::shiftYParEdit = new QLineEdit(Rect::layout);
+QLabel* Rect::widthLabel = new QLabel("Width:");
+QLabel* Rect::heightLabel = new QLabel("Height:");
+QLabel* Rect::paraLabel = new QLabel("Parameterized?");
+QLabel* Rect::shiftXLabel = new QLabel("X shift:");
+QLabel* Rect::shiftYLabel = new QLabel("Y shift:");
+QLineEdit* Rect::widthEdit = new QLineEdit();
+QLineEdit* Rect::heightEdit = new QLineEdit();
+QLineEdit* Rect::shiftXEdit = new QLineEdit();
+QLineEdit* Rect::shiftYEdit = new QLineEdit();
+QLineEdit* Rect::widthParEdit = new QLineEdit();
+QLineEdit* Rect::heightParEdit = new QLineEdit();
+QLineEdit* Rect::shiftXParEdit = new QLineEdit();
+QLineEdit* Rect::shiftYParEdit = new QLineEdit();
+
+bool Rect::isSet = false;
